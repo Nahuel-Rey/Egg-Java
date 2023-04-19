@@ -19,5 +19,8 @@ public class Rectangulo {
     
     public int calcular_area () {
        return lado1 * lado2;
+       
     }
+    
+   
 }
