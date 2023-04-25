@@ -35,7 +35,7 @@ public class ejercicio3 {
         int sobrepeso = 0;
         int porcentajeMayores = 0;
 
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 3; i++) {
             switch (imcResultados[i]) {
                 case -1:
                     pesoBajo++;
