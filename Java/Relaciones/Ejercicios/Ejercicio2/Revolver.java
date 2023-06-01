@@ -3,15 +3,18 @@ package Entidades;
 import java.util.Random;
 
 /**
- * Clase Revolver de agua: esta clase posee los siguientes atributos: posici√≥n
- * actual (posici√≥n del tambor que se dispara, puede que est√© el agua o no) y
- * posici√≥n agua (la posici√≥n del tambor donde se encuentra el agua). Estas dos
- * posiciones, se generar√°n aleatoriamente. M√©todos: ‚Ä¢ llenarRevolver(): le pone
- * los valores de posici√≥n actual y de posici√≥n del agua. Los valores deben ser
- * aleatorios. ‚Ä¢ mojar(): devuelve true si la posici√≥n del agua coincide con la
- * posici√≥n actual ‚Ä¢ siguienteChorro(): cambia a la siguiente posici√≥n del
- * tambor ‚Ä¢ toString(): muestra informaci√≥n del revolver (posici√≥n actual y
- * donde est√° el agua)
+ * Clase Revolver de agua: esta clase posee los siguientes atributos: posiciÛn
+ * actual (posiciÛn del tambor que se dispara, puede que estÈ el agua o no) y
+ * posiciÛn agua (la posiciÛn del tambor donde se encuentra el agua). Estas dos
+ * posiciones, se generar·n aleatoriamente. MÈtodos: ï llenarRevolver(): le pone
+ * los valores de posiciÛn actual y de posiciÛn del agua. Los valores deben ser
+ * aleatorios. 
+ * ï mojar(): devuelve true si la posiciÛn del agua coincide con la
+ * posiciÛn actual 
+ * ï siguienteChorro(): cambia a la siguiente posiciÛn del
+ * tambor 
+ * ï toString(): muestra informaciÛn del revolver (posiciÛn actual y
+ * donde est· el agua)
  */
 public class Revolver {
 
@@ -37,11 +40,6 @@ private int posicionActual;
         this.posicionAgua = posicionAgua;
     }
 
-    @Override
-    public String toString() {
-        return "Revolver{" + "posicionActual=" + posicionActual + ", posicionAgua=" + posicionAgua + '}';
-    }
-
     public void llenarRevolver() {
         Random random = new Random();
         this.posicionActual = random.nextInt(6);
@@ -58,5 +56,9 @@ private int posicionActual;
         } else {
             this.posicionActual = this.posicionActual + 1;
         }
+    }
+    @Override
+    public String toString() {
+        return "Revolver{" + "posicionActual=" + posicionActual + ", posicionAgua=" + posicionAgua + '}';
     }
 }

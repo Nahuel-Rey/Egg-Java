@@ -4,20 +4,20 @@ package Entidades;
 import java.util.Scanner;
 
 /**
-Clase Jugador: esta clase posee los siguientes atributos: id (representa el n√∫mero del
-jugador), nombre (Empezara con Jugador m√°s su ID, ‚ÄúJugador 1‚Äù por ejemplo) y mojado (indica
-si est√° mojado o no el jugador). El n√∫mero de jugadores ser√° decidido por el usuario, pero
-debe ser entre 1 y 6. Si no est√° en este rango, por defecto ser√° 6.
-M√©todos:
-‚Ä¢ disparo(Revolver r): el m√©todo, recibe el revolver de agua y llama a los m√©todos de
+Clase Jugador: esta clase posee los siguientes atributos: id (representa el n˙mero del
+jugador), nombre (Empezara con Jugador m·s su ID, ìJugador 1î por ejemplo) y mojado (indica
+si est· mojado o no el jugador). El n˙mero de jugadores ser· decidido por el usuario, pero
+debe ser entre 1 y 6. Si no est· en este rango, por defecto ser· 6.
+MÈtodos:
+ï disparo(Revolver r): el mÈtodo, recibe el revolver de agua y llama a los mÈtodos de
 mojar() y siguienteChorro() de Revolver. El jugador se apunta, aprieta el gatillo y si el
-revolver tira el agua, el jugador se moja. El atributo mojado pasa a false y el m√©todo
+revolver tira el agua, el jugador se moja. El atributo mojado pasa a false y el mÈtodo
 devuelve true, sino false.
  */
 public class Jugador {
    private int id;
     private String nombre;
-    boolean mojado;
+    private boolean mojado;
 
     public Jugador(int id) {
         System.out.println("Ingrese el nombre");

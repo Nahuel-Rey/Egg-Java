@@ -7,15 +7,14 @@ import java.util.Scanner;
 /**
 Clase Juego: esta clase posee los siguientes atributos: Jugadores (conjunto de Jugadores) y
 Revolver
-MÃ©todos:
-â€¢ llenarJuego(ArrayList<Jugador>jugadores, Revolver r): este mÃ©todo recibe los jugadores
+Métodos:
+• llenarJuego(ArrayList<Jugador>jugadores, Revolver r): este método recibe los jugadores
 y el revolver para guardarlos en los atributos del juego.
-
-â€¢ ronda(): cada ronda consiste en un jugador que se apunta con el revolver de agua y
-aprieta el gatillo. SÃ­ el revolver tira el agua el jugador se moja y se termina el juego, sino se
+• ronda(): cada ronda consiste en un jugador que se apunta con el revolver de agua y
+aprieta el gatillo. Sí el revolver tira el agua el jugador se moja y se termina el juego, sino se
 moja, se pasa al siguiente jugador hasta que uno se moje. Si o si alguien se tiene que
-mojar. Al final del juego, se debe mostrar que jugador se mojÃ³.
-Pensar la lÃ³gica necesaria para realizar esto, usando los atributos de la clase Juego.
+mojar. Al final del juego, se debe mostrar que jugador se mojó.
+Pensar la lógica necesaria para realizar esto, usando los atributos de la clase Juego.
  */
 public class Juego {
     private ArrayList<Jugador> jugadores;
@@ -26,10 +25,12 @@ public class Juego {
     public void llenarJuego() {
         ArrayList<Jugador> jugadores = new ArrayList();
         int cantidad;
-        do {
-            System.out.println("CuÃ¡ntos jugadores desean participar? (MÃ¡ximo 6)");
+            System.out.println("Cuántos jugadores desean participar? (Máximo 6)");
             cantidad = leer.nextInt();
-        } while (cantidad > 6 || cantidad < 2);
+            if(cantidad>6){
+            cantidad = 6;
+            }
+        
         int id = 1;
 
         for (int i = 0; i < cantidad; i++) {
@@ -50,7 +51,7 @@ public class Juego {
                 System.out.println(jugador.getNombre() + " te toca");
                 if (jugador.isMojado()) {
                     System.out.println("BOOOOOOOOOM");
-                    System.out.println("FinalizÃ³ el juego, el jugador " + jugador.getNombre() + " se mojÃ³");
+                    System.out.println("Finalizó el juego, el jugador " + jugador.getNombre() + " se mojó");
                     juego = false;
                     break;
                 } else {
@@ -60,6 +61,5 @@ public class Juego {
         } while (juego);
 
     }
-   
     
 }
