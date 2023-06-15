@@ -39,6 +39,11 @@ public class Televisor extends Electrodomesticos{
     public void setTDT(boolean TDT) {
         this.TDT = TDT;
     }
+
+    @Override
+    public String toString() {
+        return "Televisor{" + "resolucion=" + resolucion + ", TDT=" + TDT + '}';
+    }
     
     
     

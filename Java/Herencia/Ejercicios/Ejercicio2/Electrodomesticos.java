@@ -13,12 +13,12 @@ public class Electrodomesticos {
     protected double precio;
     protected String color;
     protected char consumoEnergetico;
-    protected double peso;
+    protected int peso;
 
     public Electrodomesticos() {
     }
 
-    public Electrodomesticos(double precio, String color, char consumoEnergetico,double peso) {
+    public Electrodomesticos(double precio, String color, char consumoEnergetico,int peso) {
         this.precio = precio;
         this.color = color;
         this.consumoEnergetico = consumoEnergetico;
@@ -53,8 +53,13 @@ public class Electrodomesticos {
         return peso;
     }
 
-    public void setPeso(double peso) {
+    public void setPeso(int peso) {
         this.peso = peso;
+    }
+
+    @Override
+    public String toString() {
+        return "Electrodomesticos{" + "precio=" + precio + ", color=" + color + ", consumoEnergetico=" + consumoEnergetico + ", peso=" + peso + '}';
     }
     
     
