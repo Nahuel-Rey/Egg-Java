@@ -1,7 +1,8 @@
 package Main;
 
 
-import Servicios.LavadoraServicio;
+import Servicios.LavadoraService;
+
 import Servicios.TelevisorService;
 
 
@@ -10,9 +11,9 @@ public class Main {
     public static void main(String[] args) {
 
         System.out.println("Lavadora");
-        LavadoraServicio ls = new LavadoraServicio();
+        LavadoraService ls = new LavadoraService();
       ls.crearLavadora();
-        System.out.println("El precio final de la lavadora es: " + ls.precioFinalLavadora());
+        
 
         System.out.println("Televisor");
         TelevisorService ts = new TelevisorService();
