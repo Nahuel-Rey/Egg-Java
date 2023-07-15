@@ -13,9 +13,11 @@ public final class productoDAO extends DAO {
                 throw new Exception("producto nulo");
             }
             String sql = "INSERT INTO producto"
-                    + "(codigo,nombre,precio,codigo_fabricante) "
-                    + "VALUES ( " + producto.getCodigo() + " ' , ' " + producto.getNombre() + " ' , ' " + producto.getPrecio() + " ' , ' " + producto.getCodigo_fabricante() + " ' );";
-
+                    + "(nombre , precio, codigo_fabricante) "
+                    + "VALUES ( '" + producto.getNombre() + "' , "
+                    + producto.getPrecio() + " , "
+                    + producto.getCodigo_fabricante() + ");";
+            
             insertarModificarEliminar(sql);
         } catch (Exception e) {
             throw e;
@@ -66,9 +68,9 @@ public final class productoDAO extends DAO {
             consultarBase(sql);
 
             Producto producto = null;
-            
+
             Collection<Producto> listaProducto = new ArrayList();
-            
+
             while (resultado.next()) {
                 producto = new Producto();
                 producto.setCodigo(resultado.getInt(1));
@@ -85,8 +87,8 @@ public final class productoDAO extends DAO {
             desconectarBase();
         }
     }
-    
-     public Collection<Producto> listarxNombre(String nombre) throws Exception {
+
+    public Collection<Producto> listarxNombre(String nombre) throws Exception {
         try {
             String sql = "SELECT nombre FROM producto WHERE nombre LIKE '%" + nombre + "%';";
 
@@ -96,9 +98,9 @@ public final class productoDAO extends DAO {
             Collection<Producto> listaProducto = new ArrayList();
             while (resultado.next()) {
                 producto = new Producto();
-                
+
                 producto.setNombre(resultado.getString(1));
-                
+
                 listaProducto.add(producto);
             }
             return listaProducto;
@@ -109,10 +111,10 @@ public final class productoDAO extends DAO {
             desconectarBase();
         }
     }
- 
-      public Collection<Producto> listarxRango(double num1 , double num2) throws Exception {
+
+    public Collection<Producto> listarxRango(double num1, double num2) throws Exception {
         try {
-            String sql = "SELECT * FROM producto WHERE PRECIO between  " + num1 +"  AND  " + num2 +" ; ";
+            String sql = "SELECT * FROM producto WHERE PRECIO between  " + num1 + "  AND  " + num2 + " ; ";
 
             consultarBase(sql);
 
@@ -126,7 +128,7 @@ public final class productoDAO extends DAO {
                 producto.setCodigo_fabricante(resultado.getInt(4));
                 listaProducto.add(producto);
             }
-            return listaProducto ;
+            return listaProducto;
 
         } catch (Exception e) {
             throw e;
@@ -134,5 +136,55 @@ public final class productoDAO extends DAO {
             desconectarBase();
         }
     }
-   
+
+    public Producto masBarato() throws Exception {
+        try {
+            String sql = "SELECT nombre, precio FROM producto ORDER BY precio ASC LIMIT 1 ; ";
+
+            consultarBase(sql);
+
+            Producto producto = null;
+            
+            while (resultado.next()) {
+                producto = new Producto();
+
+                producto.setNombre(resultado.getString(1));
+                producto.setPrecio(resultado.getDouble(2));
+
+            }
+            return producto;
+
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            desconectarBase();
+        }
+    }
+    
+    public Producto buscarXcodigo(int cod) throws Exception {
+        try {
+            String sql = "SELECT * FROM producto WHERE codigo = '"+cod+"';";
+            
+            
+            consultarBase(sql);
+            
+            Producto producto = null;
+            
+            if (resultado.next()) {
+                producto = new Producto();
+                producto.setCodigo(resultado.getInt(1));
+                producto.setNombre(resultado.getString(2));
+                producto.setPrecio(resultado.getDouble(3));
+                producto.setCodigo_fabricante(resultado.getInt(4));
+             
+            }
+            return producto;
+           
+        } catch (Exception e){
+            throw e;
+        } finally {
+            desconectarBase();
+        }
+    }
+    
 }
