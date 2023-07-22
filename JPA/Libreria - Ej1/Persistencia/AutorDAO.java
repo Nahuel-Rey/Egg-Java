@@ -31,8 +31,9 @@ public class AutorDAO extends DAO {
                 .setParameter("nombre", nombre)
                 .getSingleResult();
     }
-
+    
     public Autor buscarXid(Integer id) {
         return em.find(Autor.class, id);
     }
+    
 }

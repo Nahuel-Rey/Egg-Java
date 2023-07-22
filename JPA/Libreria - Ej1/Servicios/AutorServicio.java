@@ -1,5 +1,6 @@
 package libreria.Servicios;
 
+import java.util.Collection;
 import java.util.Scanner;
 import libreria.Entidades.Autor;
 import libreria.Persistencia.AutorDAO;
@@ -53,7 +54,7 @@ public class AutorServicio {
             String nombreNuevo = leer.next();
 
             autorActualizar.setNombre(nombreNuevo);
-
+             
             adao.ActualizarAutor(autorActualizar);
         } catch (Exception e) {
             System.out.println("Error al editar autor: " + e.getMessage());
@@ -75,4 +76,17 @@ public class AutorServicio {
         }
     }
 
+    public void listarAutores() {
+
+        Collection<Autor> autores = adao.listarAutor();
+        for (Autor autore : autores) {
+            System.out.println(autore.toString());
+        }
+    }
+
+    public void cargarXparametro(Autor autor) {
+        adao.persistirAutor(autor);
+        System.out.println("Autor cargado Exitosamente");
+    }
+    
 }
