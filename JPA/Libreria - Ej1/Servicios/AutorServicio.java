@@ -13,9 +13,10 @@ public class AutorServicio {
 
     public void cargarAutor() {
 
-        boolean bucle = false;
+        boolean bucle ;
 
         do {
+             bucle = false;
             try {
                 Autor autor = new Autor();
                 System.out.println("Ingrese el nombre del autor");
@@ -38,7 +39,7 @@ public class AutorServicio {
 
                 if (leer.next().equalsIgnoreCase("S")) {
                     bucle = true;
-                }
+                } 
             } catch (Exception e) {
                 System.out.println("No se pudo cargar al autor" + e.getMessage());
                 e.printStackTrace();

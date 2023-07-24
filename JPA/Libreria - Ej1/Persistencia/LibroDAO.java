@@ -14,6 +14,10 @@ public class LibroDAO extends DAO {
     public void actualizarEstadoEntidad(Libro libro) {
         super.actualizarEstadoEntidad(libro);
     }
+    
+    public void eliminarLibro(Libro libro){
+        super.EliminarEntidad(libro);
+    } 
 
     public List consultaLibro() {
         String jpql = "SELECT l FROM Libro l";
@@ -24,7 +28,7 @@ public class LibroDAO extends DAO {
     public Libro buscarXtitulo(String titulo) {
         String jpql = "SELECT l FROM Libro l WHERE l.titulo LIKE :titulo";
         Query query = em.createQuery(jpql);
-        query.setParameter("titulo", titulo);
+        query.setParameter("titulo",  "%"+titulo+"%" );
         try {
             return (Libro) query.getSingleResult();
         } catch (NoResultException ex) {
@@ -49,7 +53,7 @@ public class LibroDAO extends DAO {
 
     
      public List buscarXeditorial(String nombre) {
-        String jpql = "SELECT l FROM Libro l  WHERE l.editorial.nombre LIKE :nombre";
+        String jpql = "SELECT l FROM Libro l  WHERE l.editorial.nombre = :nombre";
 
         try {
             return em.createQuery(jpql)

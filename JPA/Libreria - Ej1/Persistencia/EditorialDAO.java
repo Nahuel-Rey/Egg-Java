@@ -29,10 +29,10 @@ public class EditorialDAO extends DAO {
     }
 
     public List buscarXnombre(String nombre) {
-        String jpql = "SELECT e FROM Editorial e WHERE e.nombre =  :nombre";
+        String jpql = "SELECT e FROM Editorial e WHERE e.nombre LIKE  :nombre";
 
         return em.createQuery(jpql, Editorial.class)
-                .setParameter("nombre", nombre)
+                .setParameter("nombre", "%"+nombre+"%")
                 .getResultList();
     }
 

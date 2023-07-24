@@ -25,9 +25,9 @@ public class LibroServicio {
 
         do {
             Libro libro = new Libro();
-            
+
             libro.setAlta(true);
-            
+
             System.out.println("Ingrese el ISBN del libro");
             long isbn = leer.nextLong();
             Libro libroExistente = ldao.buscarPorISBN(isbn);
@@ -247,14 +247,14 @@ public class LibroServicio {
     public void eliminarLibro() {
 
         try {
-            System.out.println("Ingrese el ISBN del libro que desea eliminar");
+            System.out.println("Ingrese el ISBN del libro que desea eliminar.");
             Libro libroEliminar = ldao.buscarPorISBN(leer.nextLong());
 
-            ldao.EliminarEntidad(libroEliminar);
-
+            ldao.eliminarLibro(libroEliminar);
+            System.out.println("\033[1;32m Se elimino el libro exitosamente.\033[0m");
         } catch (Exception e) {
-            System.out.println("Error al eliminar el libro: " + e.getMessage());
-            e.printStackTrace();
+            System.out.println("\033[1;31m Error al eliminar.\033[0m" );
+            System.out.println(e.getMessage());
         }
 
     }

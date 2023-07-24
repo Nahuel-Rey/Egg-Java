@@ -25,10 +25,10 @@ public class AutorDAO extends DAO {
     }
 
     public List buscarXnombre(String nombre) {
-        String jpql = "SELECT a FROM Autor a WHERE a.nombre = :nombre";
+        String jpql = "SELECT a FROM Autor a WHERE a.nombre LIKE :nombre";
 
         return em.createQuery(jpql, Autor.class)
-                .setParameter("nombre", nombre)
+                .setParameter("nombre", "%"+nombre+"%")
                 .getResultList();
     }
 

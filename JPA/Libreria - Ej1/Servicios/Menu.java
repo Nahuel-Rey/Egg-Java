@@ -16,7 +16,7 @@ public class Menu {
         int opcion;
         do {
             System.out.println("----------------------------------------------------");
-            System.out.println("BIENVENIDO A LA LIBRERIA");
+            System.out.println("\033[1;32m BIENVENIDO A LA LIBRERIA.\033[0m");
             System.out.println("Ingrese la opcion deseada");
 
             System.out.println("1.Autor");
@@ -50,7 +50,7 @@ public class Menu {
         int opcion;
         do {
             System.out.println("------------------------------------------------------------------");
-            System.out.println("MENU AUTOR");
+            System.out.println("\033[1;32m MENU AUTOR.\033[0m");
             System.out.println("Ingrese la opcion deseada");
 
             System.out.println("1.Cargar Autor");
@@ -94,7 +94,7 @@ public class Menu {
         int opcion;
         do {
             System.out.println("--------------------------------------------------------------------");
-            System.out.println("MENU EDITORIAL");
+            System.out.println("\033[1;32m MENU EDITORIAL.\033[0m");
             System.out.println("Ingrese la opcion deseada");
 
             System.out.println("1.Cargar Editorial");
@@ -133,7 +133,7 @@ public class Menu {
     public void menuLibro() {
         int opcion;
         do {
-            System.out.println("MENU LIBROS");
+            System.out.println("\033[1;42m MENU LIBROS.\033[0m");
             System.out.println("Ingrese la opcion deseada");
 
             System.out.println("1.Cargar Libro");

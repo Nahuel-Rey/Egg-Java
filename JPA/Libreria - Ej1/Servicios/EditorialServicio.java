@@ -13,9 +13,10 @@ public class EditorialServicio {
 
     public void cargarEditorial() {
 
-        boolean bucle = false;
+        boolean bucle ;
 
         do {
+            bucle=false;
             try {
                 Editorial editorial = new Editorial();
                 System.out.println("Ingrese el nombre de la editorial");
