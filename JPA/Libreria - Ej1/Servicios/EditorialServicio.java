@@ -1,16 +1,17 @@
-
 package libreria.Servicios;
 
+import java.util.Collection;
+import java.util.List;
 import java.util.Scanner;
 import libreria.Entidades.Editorial;
 import libreria.Persistencia.EditorialDAO;
 
 public class EditorialServicio {
-    
+
     private EditorialDAO edao = new EditorialDAO();
     Scanner leer = new Scanner(System.in).useDelimiter("\n");
-    
-     public void cargarEditorial() {
+
+    public void cargarEditorial() {
 
         boolean bucle = false;
 
@@ -23,9 +24,8 @@ public class EditorialServicio {
                 editorial.setNombre(nombre);
                 editorial.setAlta(true);
 
-                Editorial editorialExistente = edao.buscarXnombre(nombre);
-
-                if (editorialExistente != null) {
+                List<Editorial> editoriales = edao.buscarXnombre(nombre);
+                if (!editoriales.isEmpty()) {
                     System.out.println("Ya existe esta editorial");
                     continue;
                 }
@@ -45,24 +45,32 @@ public class EditorialServicio {
         } while (bucle);
 
     }
-     
-     public void editarEditorial(String nombre) {
+
+    public void editarEditorial() {
         try {
-           Editorial editorialActualizar = edao.buscarXnombre(nombre);
+            System.out.println("Ingrese el nombre de la editorial a editar");
+            String nombre = leer.next();
+            List<Editorial> editoriales = edao.buscarXnombre(nombre);
 
-            System.out.println("Ingrese el nuevo nombre");
-            String nombreNuevo = leer.next();
+            for (Editorial editorial : editoriales) {
+                if (editorial.getNombre().equalsIgnoreCase(nombre)) {
+                    System.out.println("Ingrese el nuevo nombre");
+                    editorial.setNombre(leer.next());
+                    editorial.setAlta(true);
+                    edao.actualizarEditorial(editorial);
+                } else {
+                    System.out.println("Editorial no encontrado");
+                    continue;
+                }
+            }
 
-            editorialActualizar.setNombre(nombreNuevo);
-
-            edao.actualizarEditorial(editorialActualizar);
         } catch (Exception e) {
             System.out.println("Error al editar la editorial: " + e.getMessage());
             e.printStackTrace();
         }
     }
-     
-     public void eliminarEditorial() {
+
+    public void eliminarEditorial() {
 
         try {
             System.out.println("Ingrese el id del editorial a eliminar");
@@ -75,9 +83,22 @@ public class EditorialServicio {
             e.printStackTrace();
         }
     }
-     
-     public void cargarXparametro(Editorial editorial) {
-         edao.persistirEditorial(editorial);
-         System.out.println("Editorial cargado exitosamente");
-     }
+//metodo solo utilizado internamente por libroServicio.
+    public void cargarXparametro(Editorial editorial) {
+        edao.persistirEditorial(editorial);
+        System.out.println("Editorial cargado exitosamente");
+    }
+    public void listarEditoriales() {
+
+        Collection<Editorial> editoriales = edao.listarEditorial();
+        for (Editorial editoriale : editoriales) {
+            System.out.println(editoriale.toString());
+        }
+    }
+    
+    public void buscarXId() {
+        System.out.println("Ingrese el id del editorial");
+        Editorial editorial = edao.buscarXid(leer.nextInt());
+        System.out.println(editorial.toString());
+    }
 }

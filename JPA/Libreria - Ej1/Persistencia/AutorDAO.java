@@ -24,16 +24,16 @@ public class AutorDAO extends DAO {
         return query.getResultList();
     }
 
-    public Autor buscarXnombre(String nombre) {
+    public List buscarXnombre(String nombre) {
         String jpql = "SELECT a FROM Autor a WHERE a.nombre = :nombre";
 
         return em.createQuery(jpql, Autor.class)
                 .setParameter("nombre", nombre)
-                .getSingleResult();
+                .getResultList();
     }
-    
+
     public Autor buscarXid(Integer id) {
         return em.find(Autor.class, id);
     }
-    
+
 }

@@ -21,7 +21,7 @@ public class LibroDAO extends DAO {
         return query.getResultList();
     }
 
-    public Libro buscarXnombre(String titulo) {
+    public Libro buscarXtitulo(String titulo) {
         String jpql = "SELECT l FROM Libro l WHERE l.titulo LIKE :titulo";
         Query query = em.createQuery(jpql);
         query.setParameter("titulo", titulo);
@@ -36,9 +36,8 @@ public class LibroDAO extends DAO {
         return em.find(Libro.class, isbn);
     }
 
-  public List<Libro> buscarXautor(String nombre) {
-    String jpql = "SELECT l FROM Libro l WHERE LOWER(l.autor.nombre) LIKE LOWER(:nombre)";
-
+  public List buscarXautor(String nombre) {
+    String jpql = "SELECT l FROM Libro l WHERE l.autor.nombre LIKE :nombre";
     try {
         return em.createQuery(jpql)
                 .setParameter("nombre", nombre)

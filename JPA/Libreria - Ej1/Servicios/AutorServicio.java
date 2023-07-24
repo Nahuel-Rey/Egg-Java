@@ -1,6 +1,7 @@
 package libreria.Servicios;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Scanner;
 import libreria.Entidades.Autor;
 import libreria.Persistencia.AutorDAO;
@@ -23,12 +24,12 @@ public class AutorServicio {
                 autor.setNombre(nombre);
                 autor.setAlta(true);
 
-                Autor autorExistente = adao.buscarXnombre(nombre);
-
-                if (autorExistente != null) {
-                    System.out.println("Ya existe este autor");
+                List<Autor> autores = adao.buscarXnombre(nombre);
+                if (!autores.isEmpty()) {
+                    System.out.println("Ya existe el autor");
                     continue;
                 }
+                
 
                 adao.persistirAutor(autor);
                 System.out.println("Se guardo el autor");
@@ -46,16 +47,23 @@ public class AutorServicio {
 
     }
 
-    public void editarAutor(String nombre) {
+    public void editarAutor() {
         try {
-            Autor autorActualizar = adao.buscarXnombre(nombre);
-
-            System.out.println("Ingrese el nuevo nombre");
-            String nombreNuevo = leer.next();
-
-            autorActualizar.setNombre(nombreNuevo);
-             
-            adao.ActualizarAutor(autorActualizar);
+            System.out.println("Ingrese el nombre del autor a editar");
+            String nombre= leer.next();
+            
+            List<Autor> autores = adao.buscarXnombre(nombre);
+                for (Autor autor : autores) {
+                    if (autor.getNombre().equalsIgnoreCase(nombre)) {
+                        System.out.println("Ingrese el nuevo nombre");
+                        autor.setNombre(leer.next());
+                        autor.setAlta(true);
+                        adao.ActualizarAutor(autor);
+                    } else {
+                        System.out.println("Autor no encontrado");
+                        continue;
+                    }
+            }
         } catch (Exception e) {
             System.out.println("Error al editar autor: " + e.getMessage());
             e.printStackTrace();
@@ -83,10 +91,29 @@ public class AutorServicio {
             System.out.println(autore.toString());
         }
     }
-
+//metodo solo utilizado internamente por libroServicio.
     public void cargarXparametro(Autor autor) {
-        adao.persistirAutor(autor);
-        System.out.println("Autor cargado Exitosamente");
+        try {
+            adao.persistirAutor(autor);
+            System.out.println("Autor cargado Exitosamente");
+        } catch (Exception e) {
+            System.out.println("No se pudo cargar al autor" + e.getMessage());
+            e.printStackTrace();
+        }
     }
     
+    public void buscarXNombre(){
+        System.out.println("Ingrese el nombre del autor");
+      List<Autor> autores = adao.buscarXnombre(leer.next());
+            if (!autores.isEmpty()) {
+                Autor autorExistente = autores.get(0);
+                System.out.println(autorExistente.toString());
+            }
+    }
+    
+    public void buscarXId() {
+        System.out.println("Ingrese el id del autor");
+        Autor autor=adao.buscarXid(leer.nextInt());
+        System.out.println(autor.toString());
+    }
 }
