@@ -13,10 +13,10 @@ public class EditorialServicio {
 
     public void cargarEditorial() {
 
-        boolean bucle ;
+        boolean bucle;
 
         do {
-            bucle=false;
+            bucle = false;
             try {
                 Editorial editorial = new Editorial();
                 System.out.println("Ingrese el nombre de la editorial");
@@ -85,18 +85,20 @@ public class EditorialServicio {
         }
     }
 //metodo solo utilizado internamente por libroServicio.
+
     public void cargarXparametro(Editorial editorial) {
         edao.persistirEditorial(editorial);
         System.out.println("Editorial cargado exitosamente");
     }
+
     public void listarEditoriales() {
 
         Collection<Editorial> editoriales = edao.listarEditorial();
         for (Editorial editoriale : editoriales) {
-            System.out.println(editoriale.toString());
+            System.out.println("Id: " + editoriale.getId() + " | Nombre: " + editoriale.getNombre() + "| Alta:" + editoriale.getAlta());
         }
     }
-    
+
     public void buscarXId() {
         System.out.println("Ingrese el id del editorial");
         Editorial editorial = edao.buscarXid(leer.nextInt());

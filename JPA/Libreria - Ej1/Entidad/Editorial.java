@@ -49,7 +49,7 @@ public class Editorial {
 
     @Override
     public String toString() {
-        return "Editorial{" + "id=" + id + ", nombre=" + nombre + ", alta=" + alta + '}';
+        return "Editorial{" + "Id=" + id + ", Nombre=" + nombre + ", Alta=" + alta + '}';
     }
     
     

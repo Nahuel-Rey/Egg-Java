@@ -249,11 +249,11 @@ public class LibroServicio {
         try {
             System.out.println("Ingrese el ISBN del libro que desea eliminar.");
             Libro libroEliminar = ldao.buscarPorISBN(leer.nextLong());
-
+            leer.next();
             ldao.eliminarLibro(libroEliminar);
             System.out.println("\033[1;32m Se elimino el libro exitosamente.\033[0m");
         } catch (Exception e) {
-            System.out.println("\033[1;31m Error al eliminar.\033[0m" );
+            System.out.println("\033[1;31m Error al eliminar.\033[0m");
             System.out.println(e.getMessage());
         }
 
@@ -262,7 +262,7 @@ public class LibroServicio {
     public void listraLibros() {
         List<Libro> libros = ldao.consultaLibro();
         for (Libro libro : libros) {
-            System.out.println(libro.toString());
+            System.out.println("ISBN: " + libro.getISBN() + " | Titulo: " + libro.getTitulo() + " | Año:" + libro.getAnio() + " | Ejemplares: " + libro.getEjemplares() + " | " + "\033[1;32m"+libro.getAutor()+".\033[0m" + " | " + "\033[1;32m"+libro.getAutor()+".\033[0m()");
         }
     }
 
