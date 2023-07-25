@@ -262,7 +262,7 @@ public class LibroServicio {
     public void listraLibros() {
         List<Libro> libros = ldao.consultaLibro();
         for (Libro libro : libros) {
-            System.out.println("ISBN: " + libro.getISBN() + " | Titulo: " + libro.getTitulo() + " | Año:" + libro.getAnio() + " | Ejemplares: " + libro.getEjemplares() + " | " + "\033[1;32m"+libro.getAutor()+".\033[0m" + " | " + "\033[1;32m"+libro.getAutor()+".\033[0m()");
+            System.out.println("ISBN: " + libro.getISBN() + " | Titulo: " + libro.getTitulo() + " | Año:" + libro.getAnio() + " | Ejemplares: " + libro.getEjemplares() + " | " + "\033[1;32m"+libro.getAutor()+".\033[0m" + " | " + "\033[1;32m"+libro.getEditorial()+".\033[0m()");
         }
     }
 
